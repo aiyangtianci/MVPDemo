@@ -10,11 +10,13 @@
         android:layout_height="wrap_content"
         android:text="请求"/>
 
-    <TextView
-        android:id="@+id/text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_book"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="hello~"
-        android:textSize="13sp"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"/>
 </LinearLayout>

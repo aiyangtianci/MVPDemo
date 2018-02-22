@@ -1,80 +1,105 @@
 package com.example.mvpdemo.presenter.compl;
 
-import android.content.Context;
 import android.util.Log;
-import android.view.View;
+import android.widget.ImageView;
 
-import com.example.mvpdemo.model.info.Book;
-import com.example.mvpdemo.model.info.DataManager;
+import com.example.mvpdemo.model.Book;
+import com.example.mvpdemo.model.Book.BookListBean;
+import com.example.mvpdemo.model.BookItemBean;
 import com.example.mvpdemo.presenter.IPresenter.IBookPresenter;
-import com.example.mvpdemo.view.interfaceview.BookView;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by aiyang on 2018/2/8.
  */
 
-public class BookPresenter implements IBookPresenter{
-    private CompositeSubscription mCompositeSubscription;
+public class BookPresenter extends IBookPresenter.BookCustomPresenter{
+    private int mStart;
+    private int mCount = 30;
+    private boolean isLoading;
 
-    private Context mContext;
-
-    private Book mBook;
-
-    private DataManager manager;
-
-    private BookView mBookView;
-
-    public BookPresenter(Context mContext) {
-        this.mContext = mContext;
+    public static BookPresenter getInstance() {
+        return new BookPresenter();
     }
 
     @Override
-    public void onCreate() {
-        manager = new DataManager(mContext);
-        mCompositeSubscription = new CompositeSubscription();
+    public void loadLatestBookList() {
+        if (mIModel == null || mIView == null)
+            return;
+
+        mStart = 0;
+        //一次加载20条数据
+        mRxManager.register(mIModel.getBookListWithTag(mIView.getBookTags(), mStart, mCount)
+                .subscribe(new Consumer<BookListBean>() {
+                    @Override
+                    public void accept(BookListBean bookListBean) throws Exception {
+                        if (mIView == null)
+                            return;
+
+                        mStart += mCount;
+                        mIView.updateContentList(bookListBean.getBooks());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (mIView == null)
+                            return;
+
+                        if (mIView.isVisiable())
+                            mIView.showToast("Network error.");
+
+                        mIView.showNetworkError();
+                    }
+                }));
     }
 
     @Override
-    public void onStop() {
-        if (mCompositeSubscription.hasSubscriptions()){
-            mCompositeSubscription.unsubscribe();
+    public void loadMoreBookList() {
+        if (!isLoading) {
+            isLoading = true;
+            //一次加载20条数据
+            mRxManager.register(mIModel.getBookListWithTag(mIView.getBookTags(), mStart, mCount)
+                    .subscribe(new Consumer<BookListBean>() {
+                        @Override
+                        public void accept(BookListBean bookListBean) throws
+                                Exception {
+                            isLoading = false;
+                            if (mIView == null)
+                                return;
+
+                            if (bookListBean != null && bookListBean.getBooks() != null &&
+                                    bookListBean.getBooks().size() > 0) {
+                                mStart += mCount;
+                                mIView.updateContentList(bookListBean.getBooks());
+                            } else {
+                                mIView.showNoMoreData();
+                            }
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            isLoading = false;
+                            if (mIView != null) {
+                                mIView.showLoadMoreError();
+                            }
+                        }
+                    }));
         }
     }
 
+
     @Override
-    public void attachView(Object view) {
-        mBookView = (BookView)view;
+    public void onItemClick(int position, BookItemBean item, ImageView imageView) {
+        Log.d("aaa","oh ~ you onClick me...shit~!!!");
     }
 
-    public void getSearchBooks(String name,String tag,int start,int count){
-        mCompositeSubscription.add(manager.getSearchBooks(name,tag,start,count)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Book>() {
-                    @Override
-                    public void onCompleted() {
-                        if (mBook != null){
-                            mBookView.onSuccess(mBook);
-                        }
+    @Override
+    public IBookPresenter.IBookCustomModel getModel() {
+        return Book.getInstance();
+    }
 
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                        mBookView.onError("请求失败！！");
-                    }
-
-                    @Override
-                    public void onNext(Book book) {
-                        mBook = book;
-                    }
-                })
-        );
+    @Override
+    public void onStart() {
     }
 }

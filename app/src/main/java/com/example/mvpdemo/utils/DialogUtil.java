@@ -1,4 +1,4 @@
-package com.example.mvpdemo.model.utils;
+package com.example.mvpdemo.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;

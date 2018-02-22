@@ -7,10 +7,9 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.example.mvpdemo.model.info.UserInfo;
-import com.example.mvpdemo.model.utils.DialogUtil;
+import com.example.mvpdemo.model.UserInfo;
+import com.example.mvpdemo.utils.DialogUtil;
 import com.example.mvpdemo.presenter.IPresenter.IMainActivityPresenter;
 import com.example.mvpdemo.view.activity.RetrofitActivity;
 

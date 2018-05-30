@@ -1,17 +1,16 @@
 package com.example.mvpdemo.presenter.compl;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import com.example.mvpdemo.model.UserInfo;
-import com.example.mvpdemo.utils.DialogUtil;
+import com.example.mvpdemo.model.info.UserInfo;
+import com.example.mvpdemo.model.utils.DialogUtil;
 import com.example.mvpdemo.presenter.IPresenter.IMainActivityPresenter;
-import com.example.mvpdemo.view.activity.RetrofitActivity;
 
 import java.util.List;
 
@@ -50,7 +49,6 @@ public class MainActivityPresenterCompl implements IMainActivityPresenter {
                         progressBar.setVisibility(View.INVISIBLE);
                         DialogUtil.showSimpleDialog(context,"提示","提交数据完成");
                         initData(editList);
-                        context.startActivity(new Intent(context, RetrofitActivity.class));
                     }
                 });
             }

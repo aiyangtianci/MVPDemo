@@ -10,9 +10,8 @@ import java.util.List;
  * Created by aiyang on 2018/1/8.
  */
 
-public interface IMainActivityPresenter {
+public interface ILoginPresenter {
 
-    void submitData(Context context , List<EditText> editList, ProgressBar progressBar);
+    void loginSubmit(String username, String password);
 
-    void initData(List<EditText> editList);
 }

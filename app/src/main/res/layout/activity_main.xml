@@ -7,72 +7,10 @@
     android:padding="20dp"
     tools:context="com.example.mvpdemo.view.activity.MainActivity">
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="填写个人信息报告"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        />
-    <EditText
-        android:id="@+id/age"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="年龄"
-        />
-
-    <EditText
-        android:id="@+id/gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="性别"
-        />
-
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="名字"
-        />
-
-    <EditText
-        android:id="@+id/hobby"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="爱好"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:paddingEnd="30dp"
-        android:layout_marginBottom="50dp"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="30.0dp"
-            android:layout_marginRight="30.0dp"
-            android:text="提交"
-            />
-
-        <Button
-            android:id="@+id/clean"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="30.0dp"
-            android:layout_marginLeft="40.0dp"
-            android:text="清除"/>
-    </LinearLayout>
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/submit_pro"
-        />
-
+        android:layout_height="match_parent"
+        android:text="Hello  World"
+        android:gravity="center"/>
 </LinearLayout>

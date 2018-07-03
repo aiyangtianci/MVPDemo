@@ -1,10 +1,12 @@
 package com.example.mvpdemo.model.info;
 
+import android.os.Handler;
+
 /**
  * Created by aiyang on 2018/1/8.
  */
 
-public class UserInfo {
+public class UserInfo implements LoginModel{
     private String age;
     private String name;
     private String gender;
@@ -40,5 +42,22 @@ public class UserInfo {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+
+    @Override
+    public void loginSubmit(final String username, final String password, final OnLoginListener listener) {
+
+        //此次Handler制造延迟3秒和回调——纯属模仿网络请求。实际开发可以替换
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (username.equals("1") && password.equals("1")) {
+                    listener.onLoginSuccess();
+                } else {
+                    listener.onLoginFail();
+                }
+            }
+        }, 2000);
     }
 }

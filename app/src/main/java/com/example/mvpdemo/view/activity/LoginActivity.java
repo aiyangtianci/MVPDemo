@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mvpdemo.R;
-import com.example.mvpdemo.model.info.UserInfo;
+import com.example.mvpdemo.model.entity.UserInfo;
 import com.example.mvpdemo.presenter.IPresenter.ILoginPresenter;
 import com.example.mvpdemo.presenter.compl.LoginPresentImpl;
 import com.example.mvpdemo.utils.DialogUtil;

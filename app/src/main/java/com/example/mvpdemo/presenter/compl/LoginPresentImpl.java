@@ -1,36 +1,25 @@
 package com.example.mvpdemo.presenter.compl;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-
-import com.example.mvpdemo.model.info.LoginModel;
-import com.example.mvpdemo.model.info.UserInfo;
-import com.example.mvpdemo.utils.DialogUtil;
+import com.example.mvpdemo.model.Imoder.ILoginModel;
 import com.example.mvpdemo.presenter.IPresenter.ILoginPresenter;
 import com.example.mvpdemo.view.interfaceview.LoginView;
-
-import java.util.List;
 
 /**
  * Created by aiyang on 2018/1/8.
  * 中介者——处理视图和模型
  */
 
-public class LoginPresentImpl implements ILoginPresenter,LoginModel.OnLoginListener {
+public class LoginPresentImpl implements ILoginPresenter,ILoginModel.OnLoginListener {
 
     private LoginView mView;
-    private LoginModel mModel;
+    private ILoginModel mModel;
 
     /**
      * 构造函数进行实例化
      * @param mView
      * @param mModel
      */
-    public LoginPresentImpl(LoginView mView, LoginModel mModel) {
+    public LoginPresentImpl(LoginView mView, ILoginModel mModel) {
         this.mView = mView;
         this.mModel = mModel;
     }
@@ -48,6 +37,7 @@ public class LoginPresentImpl implements ILoginPresenter,LoginModel.OnLoginListe
 
     @Override
     public void onLoginSuccess() {
+        mView.hideProgress();
         mView.loginSuccess();
     }
 

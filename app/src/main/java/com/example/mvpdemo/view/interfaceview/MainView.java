@@ -1,11 +1,13 @@
 package com.example.mvpdemo.view.interfaceview;
 
+import com.example.mvpdemo.model.entity.Book;
+
 /**
- * Created by aiyang on 2018/1/8.
- * UI接口
+ * Created by aiyang on 2018/7/4.
  */
 
-public interface LoginView {
+public interface MainView {
+
     /**
      * 显示进度条
      */
@@ -19,10 +21,10 @@ public interface LoginView {
     /**
      * 登录成功处理UI
      */
-    void loginSuccess();
+    void setBooksUISuccess(Book book);
 
     /**
      * 登录失败处理UI
      */
-    void loginFail();
+    void setBooksUIFail(String onError);
 }

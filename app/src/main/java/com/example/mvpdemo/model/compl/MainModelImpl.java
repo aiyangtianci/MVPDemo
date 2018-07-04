@@ -1,6 +1,7 @@
 package com.example.mvpdemo.model.compl;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.example.mvpdemo.https.APIManager;
 import com.example.mvpdemo.model.Imoder.IMainModel;
@@ -29,7 +30,14 @@ public class MainModelImpl implements IMainModel {
                     @Override
                     public void onCompleted() {
                         if (mBook != null){
-                            listener.getBooksAPISuccess(mBook);
+                            //为了效果，我延迟一下下
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.getBooksAPISuccess(mBook);
+                                }
+                            }, 1000);
+
                         }
                     }
 

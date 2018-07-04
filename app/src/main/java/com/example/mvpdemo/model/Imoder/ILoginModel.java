@@ -1,10 +1,10 @@
-package com.example.mvpdemo.model.info;
+package com.example.mvpdemo.model.Imoder;
 
 /**
  * Created by aiyang on 2018/7/3.
  */
 
-public interface LoginModel {
+public interface ILoginModel {
 
     interface OnLoginListener {
         void onLoginSuccess();

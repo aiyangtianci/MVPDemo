@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- 亮粉红色 -->
+    <color name="orange">#FFA500</color>
+    <!--白色-->
+    <color name="white">#ffffffff</color>
 </resources>

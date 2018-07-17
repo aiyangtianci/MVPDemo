@@ -7,10 +7,11 @@ import com.example.mvpdemo.https.APIManager;
 import com.example.mvpdemo.model.Imoder.IMainModel;
 import com.example.mvpdemo.model.entity.Book;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by aiyang on 2018/7/4.
@@ -18,17 +19,17 @@ import rx.subscriptions.CompositeSubscription;
 
 public class MainModelImpl implements IMainModel {
 
-    private CompositeSubscription mCompositeSubscription;
     private APIManager mAPIManager;
     private Book mBook;
     @Override
     public void getSearchBooks(String name, String tag, int start, int count, final GetBooksListener listener) {
-        mCompositeSubscription.add(mAPIManager.getSearchBooks(name,tag,start,count)
+       mAPIManager.getSearchBooks(name,tag,start,count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Book>() {
+
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                         if (mBook != null){
                             //为了效果，我延迟一下下
                             new Handler().postDelayed(new Runnable() {
@@ -48,23 +49,24 @@ public class MainModelImpl implements IMainModel {
                     }
 
                     @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
                     public void onNext(Book book) {
                         mBook = book;
                     }
-                })
+                }
         );
     }
 
     @Override
     public void bind(Context context) {
-        mCompositeSubscription = new CompositeSubscription();
         mAPIManager = new APIManager(context);
     }
 
     @Override
     public void unbind() {
-        if (mCompositeSubscription.hasSubscriptions()){
-            mCompositeSubscription.unsubscribe();
-        }
     }
 }

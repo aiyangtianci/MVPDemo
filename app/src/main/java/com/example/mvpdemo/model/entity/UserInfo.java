@@ -55,7 +55,7 @@ public class UserInfo implements ILoginModel {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (username.equals("1") && password.equals("1")) {
+                if (username.equals("a") && password.equals("a")) {
                     listener.onLoginSuccess();
                 } else {
                     listener.onLoginFail();

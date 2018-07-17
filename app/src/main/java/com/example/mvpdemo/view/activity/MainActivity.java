@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init(View view ,Bundle savedInstanceState) {
         setTitle("首页");
         setBack(true);
         initView();

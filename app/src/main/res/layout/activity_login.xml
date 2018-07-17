@@ -45,5 +45,5 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(*本案例，默认正确账户和密码都为‘1’）"/>
+            android:text="(*本案例，默认正确账户和密码都为‘a’）"/>
 </LinearLayout>

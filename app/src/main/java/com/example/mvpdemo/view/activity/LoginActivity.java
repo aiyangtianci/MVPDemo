@@ -15,15 +15,19 @@ import com.example.mvpdemo.utils.DialogUtil;
 import com.example.mvpdemo.view.activity.base.BaseActivity;
 import com.example.mvpdemo.view.interfaceview.LoginView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 /**
  * Created by aiyang on 2018/7/3.
  * 登陆页面
  */
 
-public class LoginActivity extends BaseActivity implements LoginView,View.OnClickListener{
+public class LoginActivity extends BaseActivity implements LoginView{
+    @BindView(R.id.name)
     EditText name;
+    @BindView(R.id.pwd)
     EditText pwd;
-    Button submit;
 
     ILoginPresenter presenter;
     @Override
@@ -32,24 +36,16 @@ public class LoginActivity extends BaseActivity implements LoginView,View.OnClic
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init(View view,Bundle savedInstanceState) {
         setTitle("登录");
         setBack(false);
-        initView();
 
         presenter = new LoginPresentImpl(this,new UserInfo());
 
 
     }
-
-    private void initView() {
-        name = findViewById(R.id.name);
-        pwd = findViewById(R.id.pwd);
-        submit =findViewById(R.id.submit);
-        submit.setOnClickListener(this);
-    }
-    @Override
-    public void onClick(View view) {
+    @OnClick(R.id.submit)
+    public void submitClick(View view) {
         if (view.getId() == R.id.submit){
             String account = name.getText().toString().trim();
             String password =  pwd.getText().toString().trim();

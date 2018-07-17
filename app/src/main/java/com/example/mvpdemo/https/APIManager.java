@@ -4,7 +4,8 @@ import android.content.Context;
 
 import com.example.mvpdemo.model.entity.Book;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 /**
  * Created by aiyang on 2018/7/4.

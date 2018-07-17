@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import com.example.mvpdemo.R;
+
 /**
  * 弹框工具类
  */
@@ -31,7 +33,7 @@ public class DialogUtil {
         dialog.show();
     }
 
-    protected static ProgressDialog progressDialog;
+    private static ProgressDialog progressDialog;
 
     /**
      * 显示进度条

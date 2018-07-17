@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.mvpdemo.R;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -17,7 +19,7 @@ import butterknife.Unbinder;
  * @author Created by aiyang on 2018/7/3.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends RxAppCompatActivity{
     FrameLayout mRootView;
 
     RelativeLayout rl;

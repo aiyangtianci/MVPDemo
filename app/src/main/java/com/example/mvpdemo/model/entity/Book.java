@@ -1,7 +1,5 @@
 package com.example.mvpdemo.model.entity;
 
-import com.example.mvpdemo.model.Imoder.IMainModel;
-
 import java.util.List;
 
 /**

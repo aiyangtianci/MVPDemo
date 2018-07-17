@@ -36,14 +36,9 @@ public interface BaseConstract {
         void hideProgress();
 
         /**
-         * 登录成功处理UI
-         */
-        void loginSuccess();
-
-        /**
          * 登录失败处理UI
          */
-        void loginFail();
+        void showFaild(String onError);
 
         /**
          * 绑定生命周期

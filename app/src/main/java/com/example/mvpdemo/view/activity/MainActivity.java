@@ -6,19 +6,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mvpdemo.R;
-import com.example.mvpdemo.model.compl.MainModelImpl;
 import com.example.mvpdemo.model.entity.Book;
 import com.example.mvpdemo.presenter.IPresenter.ImainPresenter;
 import com.example.mvpdemo.presenter.compl.MainPresentImpl;
-import com.example.mvpdemo.utils.DialogUtil;
 import com.example.mvpdemo.view.activity.base.BaseActivity;
 import com.example.mvpdemo.view.interfaceview.MainView;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener ,MainView{
+public class MainActivity extends BaseActivity<MainPresentImpl> implements View.OnClickListener , MainView{
 
     private TextView text_response;
     private Button getButton;
-    private ImainPresenter presenter;
 
 
 
@@ -32,8 +29,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
         setTitle("首页");
         setBack(true);
         initView();
-        presenter = new MainPresentImpl(new MainModelImpl(),this);
-        presenter.bind(this);
+        mPresenter = new MainPresentImpl(this,this);
     }
 
     private void initView() {
@@ -45,18 +41,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_get){
-            presenter.getSearchBooks("少年维特的烦恼",null,0,1);
+            mPresenter.getSearchBooks("少年维特的烦恼",null,0,1);
         }
-    }
-
-    @Override
-    public void showProgress() {
-        DialogUtil.showProgress(this,"请求中。。");
-    }
-
-    @Override
-    public void hideProgress() {
-        DialogUtil.dismissProgress();
     }
 
     @Override
@@ -65,13 +51,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener ,
     }
 
     @Override
-    public void setBooksUIFail(String onError) {
-        DialogUtil.showSimpleDialog(this,"错误提示",onError,null);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.unbind();
     }
 }

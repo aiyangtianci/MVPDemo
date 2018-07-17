@@ -7,17 +7,17 @@ package com.example.mvpdemo.view.activity.base;
 
 public class BasePresenterimpl<T extends BaseConstract.IBaseView> implements BaseConstract.IBasePersenter<T>{
 
-    T mViewChild;
+    public T mView;
 
     @Override
     public void attachView(T view) {
-        this.mViewChild = view;   //原来是以注入方式写在P层细节构造函数中。现在利用父类的接口方法可以省去这一环节
+        this.mView = view;   //原来是以注入方式写在P层细节构造函数中。现在利用父类的接口方法可以省去这一环节
     }
 
     @Override
     public void detachView() {
-        if (mViewChild != null){
-            mViewChild = null;
+        if (mView != null){
+            mView = null;
         }
     }
 }

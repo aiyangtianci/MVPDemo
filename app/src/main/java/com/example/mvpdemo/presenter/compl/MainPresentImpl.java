@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainPresentImpl extends BasePresenterimpl<MainView> implements ImainPresenter{
 
-    private APIManager mAPIManager;
+
     private Book mBook;
 
     public MainPresentImpl(Context context , BaseConstract.IBaseView view) {

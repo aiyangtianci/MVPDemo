@@ -11,7 +11,7 @@ import io.reactivex.Observable;
  * Created by aiyang on 2018/7/4.
  */
 
-public class APIManager {
+public class APIManager{
     /**
      * RetrofitAPI对象
      */
@@ -24,6 +24,7 @@ public class APIManager {
     public APIManager(Context context){
         this.mRetrofitService = RetrofitHelper.getInstance(context).getRetrofitAPI();
     }
+
 
     /**
      * 发起请求书类

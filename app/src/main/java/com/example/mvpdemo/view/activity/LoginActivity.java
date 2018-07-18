@@ -20,6 +20,7 @@ import butterknife.OnClick;
 
 /**
  * Created by aiyang on 2018/7/3.
+ * （LoginActivity 使用最简单的MVP模式，MainActivity使用抽象接口编程优化MVP）
  * 登陆页面
  */
 
